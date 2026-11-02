@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="272" viewBox="0 48 1000 272" fill="none" role="img" aria-labelledby="title desc">
+	<title id="title">beep</title>
+	<desc id="desc">A small speaker says beep in a large, warm-colored sound bubble.</desc>
+	<defs>
+		<path id="letter-e" d="M0 134H67C67 91-5 90-5 134C-5 176 42 183 63 163"/>
+	</defs>
+	<g id="sound-bubble" transform="translate(0 48)">
+		<path fill="#F5BC87" d="M378 34C450 16 691 19 777 40C837 54 868 88 861 134C854 184 806 212 733 220C617 232 429 226 355 212C334 208 316 200 302 189L251 201L285 157C270 116 294 57 352 40C360 37 369 35 378 34Z"/>
+		<g id="beep-lettering" transform="translate(18 -3)" stroke="#38261E" stroke-width="21" stroke-linecap="round" stroke-linejoin="round">
+			<path d="M359 65V168M359 134C359 87 431 87 431 134C431 181 359 181 359 134Z"/>
+			<use href="#letter-e" x="463"/>
+			<use href="#letter-e" x="562"/>
+			<path d="M662 102V193M662 134C662 87 734 87 734 134C734 181 662 181 662 134Z"/>
+		</g>
+	</g>
+	<g id="speaker" stroke="#9AA9B4" stroke-width="2" stroke-linejoin="round">
+		<path fill="#35434E" d="M158 171H232L248 180H174Z"/>
+		<path fill="#202B34" d="M158 171L174 180V287L158 278Z"/>
+		<rect x="174" y="180" width="74" height="107" rx="2" fill="#293640"/>
+		<circle cx="211" cy="202" r="8" fill="#172129"/>
+		<circle cx="211" cy="244" r="27" fill="#172129"/>
+		<circle cx="211" cy="244" r="20" fill="#B98258" stroke="#F5BC87"/>
+		<circle cx="211" cy="244" r="9" fill="#F5BC87" stroke="#F5BC87"/>
+	</g>
+</svg>

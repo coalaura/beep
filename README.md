@@ -1,4 +1,8 @@
-# beep
+<picture>
+	<source media="(prefers-color-scheme: dark)" srcset=".github/banner.svg">
+	<source media="(prefers-color-scheme: light)" srcset=".github/banner-light.svg">
+	<img alt="beep: a small speaker saying beep in a large sound bubble." src=".github/banner-light.svg">
+</picture>
 
 A quick, simple way to check if your audio output is working. Run `beep` to play a short chime.
 
