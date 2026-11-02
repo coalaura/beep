@@ -20,7 +20,8 @@ func chime(timeInSeconds float32, _ int) float32 {
 
 	sample := 0.8 * chimeNote(t, float64(chimeFrequency))
 
-	if remaining := chimeDuration - t; remaining < chimeRelease {
+	remaining := chimeDuration - t
+	if remaining < chimeRelease {
 		sample *= remaining / chimeRelease
 	}
 
@@ -33,6 +34,7 @@ func chimeNote(t, freq float64) float64 {
 	}
 
 	envelope := math.Exp(-chimeDecay * t)
+
 	if t < chimeAttack {
 		envelope *= t / chimeAttack
 	}
