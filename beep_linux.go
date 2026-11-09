@@ -35,6 +35,11 @@ const (
 	pcmPeriodSize = 1024
 	pcmPeriods    = 4
 	pcmBufferSize = pcmPeriodSize * pcmPeriods
+
+	pcmIoctlHWParams = (3 << 30) | (unsafe.Sizeof(tPCMHWParams{}) << 16) | ('A' << 8) | 0x11
+	pcmIoctlSWParams = (3 << 30) | (unsafe.Sizeof(tPCMSWParams{}) << 16) | ('A' << 8) | 0x13
+	pcmIoctlPrepare  = ('A' << 8) | 0x40
+	pcmIoctlDrain    = ('A' << 8) | 0x44
 )
 
 type tPCMMask struct {
@@ -78,13 +83,6 @@ type tPCMSWParams struct {
 	tstampType       uint32
 	reserved         [56]byte
 }
-
-const (
-	pcmIoctlHWParams = (3 << 30) | (unsafe.Sizeof(tPCMHWParams{}) << 16) | ('A' << 8) | 0x11
-	pcmIoctlSWParams = (3 << 30) | (unsafe.Sizeof(tPCMSWParams{}) << 16) | ('A' << 8) | 0x13
-	pcmIoctlPrepare  = ('A' << 8) | 0x40
-	pcmIoctlDrain    = ('A' << 8) | 0x44
-)
 
 func pcmIoctl(fd int, request uintptr, arg unsafe.Pointer) error {
 	_, _, errno := syscall.Syscall(
@@ -143,6 +141,20 @@ func beep() (err error) {
 		}
 	}
 
+	available, serverErr := playPulse(buffer)
+	if available {
+		return serverErr
+	}
+
+	err = playALSA(buffer)
+	if err != nil {
+		return errors.Join(serverErr, err)
+	}
+
+	return nil
+}
+
+func playALSA(buffer []byte) (err error) {
 	fd, err := openPlaybackDevice()
 	if err != nil {
 		return err
